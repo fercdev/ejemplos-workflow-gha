@@ -17,14 +17,15 @@ jobs:
   
   build:
     needs: tests
-    if: success() && github.ref == 'refs/heads/develop'
+    if: success() && ${{github.ref_name == 'develop'}}
     runs-on: ubuntu-latest
     steps:
       - run: echo "construyendo el job build porque estoy en rama develop y job tests se ejecuto correctamente"
+      -  run: |
+          echo "RamaRefName : ${{github.ref_name}}"
 
   deploy:
-    needs: build
-    if: github.ref == 'refs/heads/master' && ${{ vars.BUILD_ENV == 'prod' }}
+    if: ${{github.ref_name == 'master'}} && ${{ vars.BUILD_ENV == 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "Desplegando en prod, desde la rama master"
