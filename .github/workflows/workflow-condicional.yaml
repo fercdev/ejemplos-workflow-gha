@@ -6,9 +6,6 @@ on:
       - master
       - develop
 
-env:
-  BUILD_ENV: "prod"
-
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -24,7 +21,7 @@ jobs:
 
   deploy:
     needs: build
-    if: github.ref == 'refs/heads/master' && ${{ env.BUILD_ENV == 'prod' }}
+    if: github.ref == 'refs/heads/master' && ${{ vars.BUILD_ENV == 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "Desplegando en prod, desde la rama master"
