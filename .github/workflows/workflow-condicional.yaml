@@ -6,6 +6,9 @@ on:
       - master
       - develop
 
+env:
+  BUILD_ENV_VALUE: ${{ vars.BUILD_ENV }}
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -25,3 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Desplegando en prod, desde la rama master"
+
+      -  run: |
+          echo "repository VAR : $BUILD_ENV_VALUE"
