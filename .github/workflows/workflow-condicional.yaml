@@ -31,3 +31,6 @@ jobs:
 
       -  run: |
           echo "repository VAR : $BUILD_ENV_VALUE"
+          echo "RamaRef : ${{github.ref}}"
+          echo "RamaRefName : ${{github.ref_name}}"
+          echo "RamaEvent : ${{github.event_name}}"
