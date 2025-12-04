@@ -17,15 +17,13 @@ jobs:
   
   build:
     needs: tests
-    if: success() && ${{github.ref_name == 'develop'}}
+    if: ${{github.ref_name == 'develop'}}
     runs-on: ubuntu-latest
     steps:
       - run: echo "construyendo el job build porque estoy en rama develop y job tests se ejecuto correctamente"
 
       -  run: |
           echo "RamaRefName : ${{github.ref_name}}"
-          echo "eventSuccessTests : ${{success()}}"
-
   deploy:
     needs: build
     if: ${{github.ref_name == 'master'}} && ${{ vars.BUILD_ENV == 'prod' }}
